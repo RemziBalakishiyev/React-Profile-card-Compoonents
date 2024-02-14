@@ -42,6 +42,10 @@ a {
   color: #718daa;
 }
 
+.active {
+  color: #718daa !important;
+}
+
 .header {
   padding-inline: 36px;
   padding-top: 0.5em;

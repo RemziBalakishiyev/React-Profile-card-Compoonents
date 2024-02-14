@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import flexClasses from "../../styles/Flexbox.module.css";
 import Card from "../cards/Card.jsx";
+import buttonClass from "../Style/Button.module.css";
 
 const PROFILES = [
   {
@@ -34,15 +35,41 @@ const PROFILES = [
 ];
 
 function Main() {
+  const [step, setstep] = useState(0);
+
   const styleProfileCards = {
     marginInline: "20px",
     gap: "10px",
   };
+
+  const changeProfileData = () => {
+    if (step < PROFILES.length - 1) {
+      setstep((prevStep) => prevStep + 1);
+      return;
+    }
+    setstep(0);
+  };
+
   return (
     <section className={flexClasses.rowCenterFlex} style={styleProfileCards}>
-      {PROFILES.map((profile) => (
+      {/* {PROFILES.map((profile) => (
         <Card profileData={profile} key={profile.id} />
-      ))}
+      ))} */}
+      <Card profileData={PROFILES[step]} />
+
+      <div>
+        <button
+          onClick={changeProfileData}
+          className={`${buttonClass.button}  ${buttonClass["primary"]}`}
+        >
+          Right
+        </button>
+        <button
+          className={`${buttonClass.button}  ${buttonClass["secondary"]}`}
+        >
+          Left
+        </button>
+      </div>
     </section>
   );
 }
